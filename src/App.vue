@@ -33,5 +33,13 @@ export default {
       box-sizing: border-box;
     }
   }
+
+  &__error {
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    font-size: 12px;
+    color: red;
+  }
 }
 </style>
