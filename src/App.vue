@@ -120,6 +120,9 @@ export default {
     input {
       width: 100%;
       height: 30px;
+      border: 1px solid #919191;
+      border-radius: 0;
+      padding: 0 5px;
       box-sizing: border-box;
       vertical-align: top;
     }
@@ -127,7 +130,7 @@ export default {
 
   &__error {
     position: absolute;
-    left: 0;
+    left: 130px;
     bottom: 12px;
     font-size: 12px;
     color: red;
@@ -136,6 +139,7 @@ export default {
 
 .bottom-button {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
   width: 300px;
   button {
@@ -144,10 +148,15 @@ export default {
     background: #000;
     color: #fff;
     border: 0;
+    border-radius: 4px;
     cursor: pointer;
     box-sizing: border-box;
     &:hover {
       background: #be9162;
+    }
+    &:disabled {
+      background: gray;
+      pointer-events: none;
     }
   }
 }

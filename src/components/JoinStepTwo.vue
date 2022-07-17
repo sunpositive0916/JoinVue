@@ -33,7 +33,12 @@
     <div class="join-form join-form--address">
       <div class="join-form__title"><label for="inputaddress">주소</label></div>
       <div class="join-form__input">
-        <button type="button" id="inputaddress" @click="execDaumPostcode()">
+        <button
+          type="button"
+          id="inputaddress"
+          class="button__zip"
+          @click="execDaumPostcode()"
+        >
           우편번호 찾기
         </button>
         <input
@@ -51,8 +56,12 @@
       </div>
     </div>
     <div class="bottom-button">
-      <button type="button" @click="goToStepOne">이전</button>
-      <button type="button" @click="goToStepThree">다음</button>
+      <button type="button" :disabled="nextPageDisabled" @click="goToStepThree">
+        다음
+      </button>
+      <button type="button" :disabled="nextPageDisabled" @click="goToStepOne">
+        이전
+      </button>
     </div>
   </div>
 </template>
@@ -73,7 +82,30 @@ export default {
       phoneValidFlag: true,
     };
   },
+  computed: {
+    nextPageDisabled() {
+      if (
+        this.isEmpty(this.signup.name) ||
+        this.isEmpty(this.signup.phone) ||
+        this.isEmpty(this.signup.addressBasic) ||
+        this.isEmpty(this.signup.addressDetail)
+      ) {
+        return true;
+      }
+      if (!this.nameValidFlag || !this.phoneValidFlag) {
+        return true;
+      }
+      return false;
+    },
+  },
   methods: {
+    isEmpty(data) {
+      if (data === "" || data === null || data === undefined) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     nameValid() {
       if (/^[가-힣]{2,}|[a-zA-z]{3,}$/.test(this.signup.name)) {
         this.nameValidFlag = true;
@@ -156,6 +188,18 @@ export default {
     input {
       margin-top: 5px;
     }
+  }
+}
+.button__zip {
+  width: 100px;
+  height: 30px;
+  border: 1px solid #919191;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+  &:hover {
+    text-decoration: underline;
   }
 }
 </style>

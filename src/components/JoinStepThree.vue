@@ -43,8 +43,16 @@
       >
     </div>
     <div class="bottom-button">
-      <button type="button" @click="goToStepTwo">이전</button>
-      <button type="button" @click="goToStepComplete">다음</button>
+      <button
+        type="button"
+        :disabled="nextPageDisabled"
+        @click="goToStepComplete"
+      >
+        다음
+      </button>
+      <button type="button" :disabled="nextPageDisabled" @click="goToStepTwo">
+        이전
+      </button>
     </div>
   </div>
 </template>
@@ -70,7 +78,30 @@ export default {
       cardValidFlag: true,
     };
   },
+  computed: {
+    nextPageDisabled() {
+      if (
+        this.isEmpty(this.signup.cardNum1) ||
+        this.isEmpty(this.signup.cardNum2) ||
+        this.isEmpty(this.signup.cardNum3) ||
+        this.isEmpty(this.signup.cardNum4)
+      ) {
+        return true;
+      }
+      if (!this.cardValidFlag) {
+        return true;
+      }
+      return false;
+    },
+  },
   methods: {
+    isEmpty(data) {
+      if (data === "" || data === null || data === undefined) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     cardValid() {
       if (
         /^[0-9]{4,}$/.test(this.signup.cardNum1) &&
@@ -136,6 +167,9 @@ export default {
       width: 70px;
       margin-right: 5px;
     }
+  }
+  .join-form__error {
+    left: 0;
   }
 }
 </style>
