@@ -1,26 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <JoinStepOne />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import JoinStepOne from "./components/JoinStepOne.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    JoinStepOne,
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+.join-form {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  padding-bottom: 30px;
+  font-size: 14px;
+
+  &__title {
+    width: 130px;
+  }
+  &__input {
+    width: 200px;
+    input {
+      width: 100%;
+      height: 30px;
+      box-sizing: border-box;
+    }
+  }
 }
 </style>
