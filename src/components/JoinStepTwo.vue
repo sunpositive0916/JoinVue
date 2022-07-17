@@ -50,19 +50,24 @@
         />
       </div>
     </div>
+    <div class="bottom-button">
+      <button type="button" @click="goToStepOne">이전</button>
+      <button type="button" @click="goToStepThree">다음</button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "JoinStepTwo",
+  props: ["nameValue", "phoneValue", "addressBasicValue", "addressDetailValue"],
   data() {
     return {
       signup: {
-        name: null,
-        phone: null,
-        addressBasic: null,
-        addressDetail: null,
+        name: this.nameValue,
+        phone: this.phoneValue,
+        addressBasic: this.addressBasicValue,
+        addressDetail: this.addressDetailValue,
       },
       nameValidFlag: true,
       phoneValidFlag: true,
@@ -121,6 +126,24 @@ export default {
           this.signup.addressBasic = roadAddr;
         },
       }).open();
+    },
+    goToStepOne() {
+      this.$emit(
+        "goToStepOne",
+        this.signup.name,
+        this.signup.phone,
+        this.signup.addressBasic,
+        this.signup.addressDetail
+      );
+    },
+    goToStepThree() {
+      this.$emit(
+        "goToStepThree",
+        this.signup.name,
+        this.signup.phone,
+        this.signup.addressBasic,
+        this.signup.addressDetail
+      );
     },
   },
 };

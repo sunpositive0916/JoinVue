@@ -50,16 +50,26 @@
         >비밀번호가 동일하지 않습니다.</span
       >
     </div>
+    <div class="bottom-button">
+      <button type="button" @click="goToStepTwo">다음</button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "JoinStepOne",
+  props: [
+    "emailValue",
+    "cardNum1Value",
+    "cardNum2Value",
+    "cardNum3Value",
+    "cardNum4Value",
+  ],
   data() {
     return {
       signup: {
-        email: null,
+        email: this.emailValue,
         password: null,
       },
       emailValidFlag: true,
@@ -99,6 +109,16 @@ export default {
       } else {
         this.passwordCheckFlag = false;
       }
+    },
+    goToStepTwo() {
+      this.$emit(
+        "goToStepTwo",
+        this.signup.email,
+        this.cardNum1Value,
+        this.cardNum2Value,
+        this.cardNum3Value,
+        this.cardNum4Value
+      );
     },
   },
 };

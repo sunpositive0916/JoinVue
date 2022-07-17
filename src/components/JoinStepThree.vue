@@ -42,19 +42,30 @@
         >카드번호 형식이 맞지 않습니다.</span
       >
     </div>
+    <div class="bottom-button">
+      <button type="button" @click="goToStepTwo">이전</button>
+      <button type="button" @click="goToStepComplete">다음</button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "JoinStepThree",
+  props: [
+    "emailValue",
+    "cardNum1Value",
+    "cardNum2Value",
+    "cardNum3Value",
+    "cardNum4Value",
+  ],
   data() {
     return {
       signup: {
-        cardNum1: null,
-        cardNum2: null,
-        cardNum3: null,
-        cardNum4: null,
+        cardNum1: this.cardNum1Value,
+        cardNum2: this.cardNum2Value,
+        cardNum3: this.cardNum3Value,
+        cardNum4: this.cardNum4Value,
       },
       cardValidFlag: true,
     };
@@ -97,6 +108,19 @@ export default {
       } else {
         this.cardValidFlag = false;
       }
+    },
+    goToStepTwo() {
+      this.$emit(
+        "goToStepTwo",
+        this.emailValue,
+        this.signup.cardNum1,
+        this.signup.cardNum2,
+        this.signup.cardNum3,
+        this.signup.cardNum4
+      );
+    },
+    goToStepComplete() {
+      this.$emit("goToStepComplete");
     },
   },
 };
