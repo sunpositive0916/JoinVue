@@ -1,14 +1,17 @@
 <template>
   <JoinStepOne />
+  <JoinStepTwo />
 </template>
 
 <script>
 import JoinStepOne from "./components/JoinStepOne.vue";
+import JoinStepTwo from "./components/JoinStepTwo.vue";
 
 export default {
   name: "App",
   components: {
     JoinStepOne,
+    JoinStepTwo,
   },
 };
 </script>

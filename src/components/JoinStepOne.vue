@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       signup: {
-        email: this.emailValue,
+        email: null,
         password: null,
       },
       emailValidFlag: true,
